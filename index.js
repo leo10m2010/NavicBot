@@ -58,10 +58,10 @@ client.on("guildMemberAdd", miembro =>{
   }
   })
 
-//client.on('message', msg => {
-  //if (msg.content === '.promo') {
-    //msg.reply('Promocion 2015 :sunglasses: ');
-  //}
-//});
+client.on('message', msg => {
+  if (msg.content === '.promo') {
+    msg.reply('Promocion 2015 :sunglasses: ');
+  }
+});
 
 client.login(process.env.token);
