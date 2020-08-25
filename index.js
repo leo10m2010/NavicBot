@@ -7,7 +7,7 @@ function presence(){
     client.user.setPresence({
        status: "online",
        activity: {
-          name: "Fall Guys",
+          name: "Bingo Hot",
           type: "PLAYING"
        }
     });
