@@ -22,8 +22,8 @@ client.on("guildMemberAdd", miembro =>{
  });
 
 client.on('message', msg => {
-  if (msg.content === '.hp') {
-    msg.reply('Feliz Cumpleaños Negro :pato:');
+  if (msg.content === '.promo') {
+    msg.reply('Promocion 2015 :sunglasses: ');
   }
 });
 
