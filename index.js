@@ -23,38 +23,6 @@ client.on("guildMemberAdd", miembro =>{
  });
 
 ////////MUSICA//////////////////
-const fs = require('fs');
-const Music = require("discord.js-musicbot-addon");
-
-const ytdl = require('ytdl-core');
-const nodeopus = require('node-opus');
-
-const { YTSearcher } = require('ytsearcher');
-const searcher = new YTSearcher('AIzaSyCLznr24tTbmK-L9Ht54lm3lOJaxi9n0kc');
-
-
-Music.start(client, {
-youtubeKey: 'TUKEY',
-botPrefix: "!!",
-messageHelp: true,
-maxQueueSize: 10,
-anyoneCanSkip: false,
-ownerOverMember: false,//creo que este es para que solo el owner pueda poner musica
-bigPicture: true,
-defVolume: 20, //volumen por defecto 1 a 200
-anyoneCanLeave: false //todos pueden poner para que el bot deje el canal de voz
-})
-//creo que aqui configuras las opciones del npm
-Music.start(client, {
-  command: {
-    enabled: true,                    // True/False statement.
-    alt: ["name1","name2","name3"],    // Array of alt names (aliases).
-    help: "Help text.",                // String of help text.
-    name: "play",                       // Name of the command.
-    usage: "{{prefix}}play bad memes", // Usage text. {{prefix}} will insert the bots prefix.
-    exclude: false                     // Excludes the command from the help command.
-  }
-});
 
 client.on('message', msg => {
   if (msg.content === '.promo') {
