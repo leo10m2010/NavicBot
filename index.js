@@ -2,10 +2,6 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client();
 
-const ytdl = require('ytdl-core');
-const search = require('youtube-search');
-
-
 function presence(){
     client.user.setPresence({
        status: "online",
@@ -39,8 +35,8 @@ const searcher = new YTSearcher('AIzaSyCLznr24tTbmK-L9Ht54lm3lOJaxi9n0kc');
 
 
 Music.start(client, {
-youtubeKey: 'AIzaSyCxls9B1pDTz1Tft1VtK4IaBuI_hKYz2uE',
-botPrefix: ".",
+youtubeKey: 'TUKEY',
+botPrefix: "!!",
 messageHelp: true,
 maxQueueSize: 10,
 anyoneCanSkip: false,
