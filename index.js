@@ -1,7 +1,10 @@
 const Discord = require('discord.js');
-const ytdl = require('ytdl-core');
-const PREFIX = '?'
+const config = require('./config.json');
 const client = new Discord.Client();
+
+const ytdl = require('ytdl-core');
+const search = require('youtube-search');
+
 
 function presence(){
     client.user.setPresence({
@@ -12,6 +15,7 @@ function presence(){
        }
     });
  }
+
 client.on('ready', () => {
   console.log("Estoy listo!");
   presence();
@@ -24,40 +28,38 @@ client.on("guildMemberAdd", miembro =>{
  });
 
 ////////MUSICA//////////////////
- client.on('message', async message => {
-  if(message.author.bot) return
-  if(!message.content.startsWith(PREFIX)) return
-  
-  const args = message.content.substring(PREFIX.length).split("")
+const fs = require('fs');
+const Music = require("discord.js-musicbot-addon");
 
-  if(message.content.startsWith(`${PREFIX}play`)){
-    const voiceChannel = message.member.voice.channel
-    if(!voiceChannel) return message.channel.send("You need to")
-    const permissions = voiceChannel.permissionsFor(message.client.user)
-    if(!permissions.has('CONNECT')) return message.channel.send("permiso")
-    if(!permissions.has('SPEAK')) return message.channel.send("I dont have permissions to speak in the channel")
-     
-    try{
-      var connection = await voiceChannel.join()
-     } catch(error) {
-        console.log(`There was an error connecting to the voice channel: ${error}`)
-        return message.channel.send(`There was an error connecting to the voice channel: ${error} `)
-     }
+const ytdl = require('ytdl-core');
+const nodeopus = require('node-opus');
 
-     const dispatcher = connection.play(ytdl(args[1]))
-     .on('finish',() => {
-       voiceChannel.leave()
-     })
-     .on('error', error => {
-       console.log(error)
-     })
-     dispatcher.setVolumeLogarithmic(5 / 5)
-  } else if (message.content.startsWith(`${PREFIX}stop`)){
-    if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to stop the music")
-    message.member.voice.channel.leave()
-    return undefined
+const { YTSearcher } = require('ytsearcher');
+const searcher = new YTSearcher('AIzaSyCLznr24tTbmK-L9Ht54lm3lOJaxi9n0kc');
+
+
+Music.start(client, {
+youtubeKey: 'TUKEY',
+botPrefix: "!!",
+messageHelp: true,
+maxQueueSize: 10,
+anyoneCanSkip: false,
+ownerOverMember: false,//creo que este es para que solo el owner pueda poner musica
+bigPicture: true,
+defVolume: 20, //volumen por defecto 1 a 200
+anyoneCanLeave: false //todos pueden poner para que el bot deje el canal de voz
+})
+//creo que aqui configuras las opciones del npm
+Music.start(client, {
+  command: {
+    enabled: true,                    // True/False statement.
+    alt: ["name1","name2","name3"],    // Array of alt names (aliases).
+    help: "Help text.",                // String of help text.
+    name: "play",                       // Name of the command.
+    usage: "{{prefix}}play bad memes", // Usage text. {{prefix}} will insert the bots prefix.
+    exclude: false                     // Excludes the command from the help command.
   }
-  })
+});
 
 client.on('message', msg => {
   if (msg.content === '.promo') {
