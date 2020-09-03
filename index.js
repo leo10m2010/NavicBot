@@ -40,7 +40,7 @@ const searcher = new YTSearcher('AIzaSyCLznr24tTbmK-L9Ht54lm3lOJaxi9n0kc');
 
 Music.start(client, {
 youtubeKey: 'AIzaSyCxls9B1pDTz1Tft1VtK4IaBuI_hKYz2uE',
-botPrefix: "!!",
+botPrefix: ".",
 messageHelp: true,
 maxQueueSize: 10,
 anyoneCanSkip: false,
