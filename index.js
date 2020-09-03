@@ -8,7 +8,7 @@ function presence(){
        status: "online",
        activity: {
           name: "Bingo Hot",
-          type: "PLAYING"
+          type: "WATCHING"
        }
     });
  }
@@ -23,6 +23,7 @@ client.on("guildMemberAdd", miembro =>{
     Canal.send("Bienvenido <@" + miembro.id + "> al servidor, recuerda hablar con respeto.\n\nEsperemos que la pases bien :). :stuck_out_tongue_winking_eye: ");
  });
 
+////////MUSICA//////////////////
  client.on('message', async message => {
   if(message.author.bot) return
   if(!message.content.startsWith(PREFIX)) return
